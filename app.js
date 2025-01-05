@@ -16,10 +16,11 @@ app.use(express.static('Public'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+
 //Templete Engine
 app.use(expressLayout)
+app.set('layout', './layouts/main.ejs')
 app.set('view engine', 'ejs')
-app.set('layouts', './layouts/main')
 
 
 //Routes
