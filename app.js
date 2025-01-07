@@ -7,10 +7,14 @@ const ejs = require('ejs');
 
 //Internal imports
 const mainRoute = require('./Server/Routes/main')
+const connectDB = require('./Server/Config/db');
 
 
 const PORT = process.env.PORT || 5000 
 
+
+//Connect Database
+connectDB()
 
 app.use(express.static('Public'))
 app.use(express.json())
