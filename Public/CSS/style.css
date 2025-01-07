@@ -265,3 +265,20 @@ img {
     margin: 4rem;
     text-align: center;
 }
+
+
+
+
+
+
+/* SeachBar */
+.searchBar {
+    visibility: hidden;
+    transform: translateY(-100px);
+    background-color: var(--black);
+    padding: 4px 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  
