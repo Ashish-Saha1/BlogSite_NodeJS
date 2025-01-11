@@ -276,18 +276,18 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .admin-posts {
+}
+
+.admin-posts {
     padding: 0;
     margin: 0;
-  }
-  
-  .admin-post-controls form {
+}
+
+.admin-post-controls form {
     display: inline-block;
-  }
-  
-  .admin-post-controls .btn  {
+}
+
+.admin-post-controls .btn  {
     display: inline-block;
     background-color: var(--black);
     color: var(--gray-light);
@@ -296,16 +296,16 @@ img {
     font-size: .8rem;
     padding: 4px 8px;
     line-height: 2;
-  }
-  
-  .admin-posts li {
+}
+
+.admin-posts li {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-  }
-  
+}
+
   /* SeachBar */
-  .searchBar {
+.searchBar {
     visibility: hidden;
     transform: translateY(-100px);
     background-color: var(--black);
@@ -313,37 +313,35 @@ img {
     position: absolute;
     left: 0;
     right: 0;
-  }
-  
-  
-  .searchBar.open {
+}
+
+
+.searchBar.open {
     transform: translateY(0);
     transition: transform 0.1s;
-  }
-  
-  .searchBar input {
+}
+
+.searchBar input {
     margin: 0;
     border: 0;
-  }
-  
-  #searchClose {
+}
+
+#searchClose {
     position: absolute;
     top: 0;
     right: 0;
     color: var(--gray-light);
     padding: 15px;
-  }
-  
-  
-  .pagination {
+}
+
+.pagination {
     font-size: 1.3rem;
     color: var(--gray);
     text-decoration: none;
     margin-top: 40px;
     display: inline-block;
-  }
-  
-  .pagination:hover {
+}
+
+.pagination:hover {
     color: var(--black);
-  }
-  
+}
