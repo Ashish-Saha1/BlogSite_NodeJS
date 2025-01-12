@@ -52,7 +52,17 @@ router.get("/about", (req,res)=>{
 //     ])
 // }
 
-// postData()
+// async function postData(){
+//   await  Post.insertMany([
+//         {
+//             title : 'Mern Stack from Office',
+//             body : 'Learn how to use Mern'
+//         }
+     
+//     ])
+// }
+
+//  postData()
 
 
 module.exports = router;
