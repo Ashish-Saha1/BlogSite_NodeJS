@@ -7,6 +7,7 @@ const ejs = require('ejs');
 
 //Internal imports
 const mainRoute = require('./Server/Routes/main')
+const adminRoute = require('./Server/Routes/admin')
 const connectDB = require('./Server/Config/db');
 
 
@@ -28,7 +29,16 @@ app.set('view engine', 'ejs')
 
 
 //Routes
-app.use('/', mainRoute)
+app.use('/', mainRoute);
+app.use('/', adminRoute);
+
+
+//Error handle
+
+function error(err,req,res,next){
+    
+}
+
 
 app.listen(PORT, ()=>{
     console.log(`Listing on Port ${PORT}`)

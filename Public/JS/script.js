@@ -1,2 +1,33 @@
+// const searchBar = document.querySelector('.searchBar');
+// console.log(searchBar);
+// console.log('he');
+// alert('heoo')
 
-// alert('Hellow Javascript')
+document.addEventListener('DOMContentLoaded', function(){
+
+    const allButtons = document.querySelectorAll('.searchBtn');
+    const searchBar = document.querySelector('.searchBar');
+    const searchInput = document.getElementById('searchInput');
+    const searchClose = document.getElementById('searchClose');
+
+   for(let i of allButtons){
+
+    i.addEventListener('click', function(){
+        searchBar.style.visibility = "visible";
+        searchBar.classList.add('open');
+        this.setAttribute('area-expanded', 'true');
+        searchInput.focus()
+    })
+
+   }
+
+
+   searchClose.addEventListener('click', function(){
+    searchBar.style.visibility = "hidden";
+    searchBar.classList.remove('open');
+    this.setAttribute('area-expanded', 'false');
+   })
+    
+
+})
+

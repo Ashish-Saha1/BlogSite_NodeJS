@@ -62,6 +62,80 @@ router.get("/", async (req,res)=>{
 
 
 
+/**
+ * GET /
+ * Post :id
+*/
+
+router.get("/post/:id", async (req,res)=>{
+    try {
+        
+        const slug = req.params.id;
+        const data = await Post.findById({_id: slug})
+
+        const locals = {
+            title : data.title,
+            description : "NodeJS blog site with mongoDb & Express"
+        }
+
+        res.render('post', { locals, data })
+    } catch (error) {
+        console.log(error);
+        
+    } 
+})
+
+
+
+/**
+ * GET /
+ * Post searchTerm
+*/
+
+router.post("/search", async (req,res)=>{
+    try {
+        const locals = {
+            title : "Search",
+            description : "NodeJS blog site with mongoDb & Express"
+        }
+
+        let searchTerm = req.body.searchTerm;
+        
+        const data = await Post.find() 
+        
+        res.render('search', { locals, data })
+        
+    } catch (error) {
+        console.log(error);
+        
+    } 
+})
+
+
+/**
+ * POST /
+ * Admin Post
+*/
+// router.post("/admin", async (req,res)=>{
+//     try {
+//         const locals = {
+//             title : "Search",
+//             description : "NodeJS blog site with mongoDb & Express"
+//         }
+
+        
+//         const data = await Post.find() 
+        
+//         res.render('search', { locals, data })
+        
+//     } catch (error) {
+//         console.log(error);
+        
+//     } 
+// })
+
+
+
 router.get("/about", (req,res)=>{
     const locals = {
         title : "About Page",
