@@ -16,7 +16,7 @@ router.get("/", async (req,res)=>{
 
         const perPage = 5;
         const page = req.query.page || 1;
-
+        
         const data = await Post.aggregate([ { $sort: {createdAt: -1} } ])
                     .skip(perPage * page - perPage)
                     .limit(perPage)
@@ -163,21 +163,46 @@ router.get("/about", (req,res)=>{
 //         {
 //             title : 'Express JS',
 //             body : 'Learn Express JS from LWS'
-//         }
-//     ])
-// }
-
-// async function postData(){
-//   await  Post.insertMany([
+//         },
 //         {
-//             title : 'Mern Stack from Office',
-//             body : 'Learn how to use Mern'
-//         }
-     
+//             title : 'Learn JS',
+//             body : 'Learn Javascript from LWS'
+//         },
+//         {
+//             title : 'Bootstrap',
+//             body : 'Bootstrap is a CSS framework'
+//         },
+//         {
+//             title : 'Tailwind',
+//             body : 'Tailwind is learn form LWS'
+//         },
+
+//         {
+//             title : 'Next JS',
+//             body : 'Next is a frame work of React'
+//         },
+//         {
+//             title : 'React JS',
+//             body : 'Learn React as a front end development'
+//         },
+//         {
+//             title : 'Early Rise',
+//             body : 'Above line is a Poem Title'
+//         },
+
+//         {
+//             title : 'My Child',
+//             body : 'Can not found any line to say'
+//         },
+
+
 //     ])
 // }
 
-//  postData()
+
+
+
+//postData()
 
 
 module.exports = router;

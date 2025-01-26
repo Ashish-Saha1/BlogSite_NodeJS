@@ -49,8 +49,16 @@ app.use('/', mainRoute);
 app.use('/', adminRoute);
 
 
-//Error handle
 
+//Not found Error handle
+
+app.use((req,res,next)=>{
+    console.log('Url not found');
+    
+    res.status(404).send(`Requested URL not found`)
+})
+
+//Error handle
 app.use((err,req,res,next)=>{
     if(err.message){
         res.status(500).send(err.message)
