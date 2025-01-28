@@ -36,6 +36,7 @@ router.get("/", async (req,res)=>{
             })
 
     } catch (error) {
+        console.log('check')
         console.log(error);
         
     } 
@@ -202,7 +203,7 @@ router.get("/about", (req,res)=>{
 
 
 
-//postData()
+// postData()
 
 
 module.exports = router;
