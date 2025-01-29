@@ -22,7 +22,6 @@ const authMiddleware = async function(req,res,next){
     } catch (error) {
         res.status(404).json({"Mess": "Check login authetication problem"})
         console.log({"CheckLogin":error.message});
-        console.log(req.cookies.token);
         
     }
 }
@@ -84,11 +83,21 @@ router.post("/admin", async (req,res)=>{
 
 
 
+/**
+ * POST /
+ * Admin Dashboard
+*/
 
+router.get('/dashboard', authMiddleware, async (req,res,next)=>{
+    const locals = {
+        title : "Dashboard",
+        description : "NodeJS blog site with mongoDb & Express"
+    }
 
-router.get('/dashboard', authMiddleware, (req,res,next)=>{
     try {
-        res.render('admin/dashboard')
+        const data = await Post.find({})
+        
+        res.render('admin/dashboard', {locals, data, layout:adminLayout})
     } catch (error) {
         console.log({"Dashboard Route": error});
         console.log(req.userId);
@@ -125,6 +134,37 @@ router.post("/register", async (req,res)=>{
         
     } 
 })
+
+
+
+
+/**
+ * POST /
+ * Admin Create New Post (Add Post)
+*/
+
+router.get('/add-post', authMiddleware, async (req,res,next)=>{
+    const locals = {
+        title : "Add New Post",
+        description : "NodeJS blog site with mongoDb & Express"
+    }
+
+    try {
+        const data = await Post.find({})
+        
+        res.render('admin/add-post', {locals, data, layout:adminLayout})
+    } catch (error) {
+        console.log({"Dashboard Route": error});
+        console.log(req.userId);
+        
+    }
+})
+
+
+
+
+
+
 
 
 
