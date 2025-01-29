@@ -49,7 +49,7 @@ router.get("/admin", async (req,res)=>{
 
 /**
  * POST /
- * Admin Check Login
+ * Admin Login
 */
 router.post("/admin", async (req,res)=>{
     
@@ -68,7 +68,7 @@ router.post("/admin", async (req,res)=>{
                                 { expiresIn: 60 * 60 }
                             );
         res.cookie('token', token, {httpOnly: true})
-        console.log(req.cookies);
+        
                 
         res.redirect('/dashboard')
         //res.status(200).json({Mess: "Successfully Signin", token})    
@@ -106,7 +106,10 @@ router.get('/dashboard', authMiddleware, async (req,res,next)=>{
 })
 
 
-
+/**
+ * POST /
+ * Admin Register
+*/
 router.post("/register", async (req,res)=>{
     
     try {
@@ -139,7 +142,7 @@ router.post("/register", async (req,res)=>{
 
 
 /**
- * POST /
+ * POST Get method
  * Admin Create New Post (Add Post)
 */
 
@@ -162,7 +165,26 @@ router.get('/add-post', authMiddleware, async (req,res,next)=>{
 
 
 
+/**
+ * POST /
+ * Admin Submit post (Means add new post submit)
+*/
 
+router.post('/add-post', authMiddleware, async (req,res,next)=>{
+    
+    try {
+        const post = new Post({
+            title : req.body.title,
+            body : req.body.body,
+        });
+            await Post.create(post)
+            res.redirect('dashboard')
+
+    } catch (error) {
+        res.status(500).json({Mess: `Add post submit: error`})
+        console.log({"Add post submit": error});        
+    }
+})
 
 
 
