@@ -187,7 +187,22 @@ router.post('/add-post', authMiddleware, async (req,res,next)=>{
 })
 
 
+// **
+//  * POST /
+//  * Admin Edit post 
+// */
 
+router.get('/edit-post/:id', authMiddleware, async (req,res,next)=>{
+        //const check = req.params.id;
+    try {
+        const check = await Post.find({});
+        res.render('admin/edit-post', {check})
+        
+    } catch (error) {
+        res.status(500).json({Mess: `Edit post: ${error.message}`})
+        console.log({"Add post submit": error});        
+    }
+})
 
 
 
