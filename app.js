@@ -6,6 +6,8 @@ const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
+
 
 //Internal imports
 const mainRoute = require('./Server/Routes/main')
@@ -31,6 +33,7 @@ app.set('layout', './layouts/main.ejs')
 app.set('view engine', 'ejs')
 
 app.use(cookieParser());
+app.use(methodOverride("_method"))
 app.use(session({
     secret : 'keyboard cat',
     resave : false,

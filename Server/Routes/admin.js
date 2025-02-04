@@ -193,10 +193,14 @@ router.post('/add-post', authMiddleware, async (req,res,next)=>{
 // */
 
 router.get('/edit-post/:id', authMiddleware, async (req,res,next)=>{
-        //const check = req.params.id;
+        
     try {
-        const check = await Post.find({});
-        res.render('admin/edit-post', {check})
+        const locals = {
+            title : "Add New Post",
+            description : "NodeJS blog site with mongoDb & Express"
+        }
+        const data = await Post.findOne({_id: req.params.id}); 
+        res.render('admin/edit-post', {data, locals, layout : adminLayout})
         
     } catch (error) {
         res.status(500).json({Mess: `Edit post: ${error.message}`})
@@ -204,7 +208,69 @@ router.get('/edit-post/:id', authMiddleware, async (req,res,next)=>{
     }
 })
 
+// **
+//  * PUT / Update
+//  * Admin Edit post 
+// */
+router.put('/edit-post/:id', authMiddleware, async (req,res,next)=>{
+    
+try {
+    await Post.findByIdAndUpdate(req.params.id, {
+        title: req.body.title,
+        body: req.body.body,
+        updatedAt : Date.now()
+    }); 
+    //res.redirect(`/edit-post/${req.params.id}`)
+    res.redirect('/dashboard')
+    
+    
+} catch (error) {
+    res.status(500).json({Mess: `Edit post: ${error.message}`})
+    console.log({"Add post submit": error});        
+}
+})
 
+
+// **
+//  * Delete Post
+//  * Admin Delete post 
+// */
+router.delete('/delete-post/:id', authMiddleware, async (req,res,next)=>{
+
+    try {
+        
+        const deletePost = await Post.deleteOne({_id : req.params.id})
+        res.redirect('/dashboard')
+        
+
+    } catch (error) {
+        res.status(500).json({Mess: `Delete post: ${error.message}`})
+        console.log({"Delete submit": error});
+    }
+
+
+})
+
+
+// **
+//  * Log Out
+//  * Admin Log-Out 
+// */
+router.get('/logout', authMiddleware, async (req,res,next)=>{
+
+    try {
+        
+        res.clearCookie('token')
+        res.redirect('/')
+        
+
+    } catch (error) {
+        res.status(500).json({Mess: `Logout: ${error.message}`})
+        console.log({"Logout submit": error});
+    }
+
+
+})
 
 
 module.exports = router;
