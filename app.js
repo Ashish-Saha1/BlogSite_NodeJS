@@ -13,11 +13,13 @@ const methodOverride = require('method-override');
 const mainRoute = require('./Server/Routes/main')
 const adminRoute = require('./Server/Routes/admin')
 const connectDB = require('./Server/Config/db');
+const { isActiveRoute } = require('./Server/Helpers/routeHelpers');
 
 
 
 const PORT = process.env.PORT || 5000 
 
+app.locals.isActiveRoute = isActiveRoute;
 
 //Connect Database
 connectDB()
